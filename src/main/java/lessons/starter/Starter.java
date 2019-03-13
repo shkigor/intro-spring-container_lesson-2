@@ -1,6 +1,7 @@
 package lessons.starter;
 
 import lessons.LessonsConfiguration;
+import lessons.services.GreetingService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
@@ -26,6 +27,9 @@ public class Starter {
         for (String beanName : beanNames) {
             System.out.println("BEAN -- " + beanName);
         }
+
+        GreetingService greetingService = context.getBean(GreetingService.class);
+        logger.info(greetingService.sayGreeting());  // "Greeting, user!
     }
 
 }
