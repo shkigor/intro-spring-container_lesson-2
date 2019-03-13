@@ -5,6 +5,9 @@ import org.springframework.beans.factory.InitializingBean;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 public class GreetingServiceImpl implements GreetingService, InitializingBean, DisposableBean {
 
     private static final Logger logger = LogManager.getLogger(GreetingServiceImpl.class);
@@ -34,5 +37,20 @@ public class GreetingServiceImpl implements GreetingService, InitializingBean, D
     @Override
     public void destroy() throws Exception {
         logger.info("******* INVOKE destroy() METHOD");
+    }
+
+    @PostConstruct
+    public void postConstructMethod() {
+        logger.info("####### - INVOKE postConstructMethod() METHOD");
+    }
+
+    @PostConstruct
+    public void anotherPostConstructMethod() {
+        logger.info("####### - INVOKE anotherPostConstructMethod() METHOD");
+    }
+
+    @PreDestroy
+    public void preDestroyMethod() {
+        logger.info("####### - INVOKE preDestroyMethod() METHOD");
     }
 }
