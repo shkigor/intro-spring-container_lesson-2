@@ -53,4 +53,12 @@ public class GreetingServiceImpl implements GreetingService, InitializingBean, D
     public void preDestroyMethod() {
         logger.info("####### - INVOKE preDestroyMethod() METHOD");
     }
+
+    public void initMethod() {
+        logger.info("@@@@@@@ - INVOKE initMethod() METHOD");
+    }
+
+    public void destroyMethod() {
+        logger.info("@@@@@@@ - INVOKE destroyMethod() METHOD");
+    }
 }

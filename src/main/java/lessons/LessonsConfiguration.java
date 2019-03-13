@@ -16,7 +16,8 @@ public class LessonsConfiguration {
     // необходимо описать его в конфигурации следующим образом:
 //    @Bean
 //    @Bean(name = "gServiceName")
-    @Bean(name = {"gServiceName", "gServiceAnotherNamed"})
+//    @Bean(name = {"gServiceName", "gServiceAnotherNamed"})
+    @Bean(name = "gServiceName", initMethod = "initMethod", destroyMethod = "destroyMethod")
     @Description("Текстовое описание бина greetingService")
     GreetingService greetingService() {
         return new GreetingServiceImpl();
