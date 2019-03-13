@@ -4,31 +4,29 @@ import lessons.LessonsConfiguration;
 import lessons.services.GreetingService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
 public class Starter {
 
-    private static ApplicationContext applicationContext;
+    private static AbstractApplicationContext ctx;
     private static final Logger logger = LogManager.getLogger(Starter.class);
 
     public static void main(String[] args) {
         logger.info("Starting configuration...");
 
-//        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
-//        applicationContext.register(LessonsConfiguration.class);
-//        applicationContext.refresh();
-        applicationContext = new AnnotationConfigApplicationContext(LessonsConfiguration.class);
+        ctx = new AnnotationConfigApplicationContext(LessonsConfiguration.class);
+        ctx.registerShutdownHook();
 
         displayAllBeans();
 
 //        GreetingService greetingService = context.getBean(GreetingService.class);
-        GreetingService greetingService = applicationContext.getBean("gServiceAnotherNamed", GreetingService.class);
+        GreetingService greetingService = ctx.getBean("gServiceAnotherNamed", GreetingService.class);
         logger.info(greetingService.sayGreeting());  // "Greeting, user!
     }
 
     public static void displayAllBeans() {
-        String[] allBeanNames = applicationContext.getBeanDefinitionNames();
+        String[] allBeanNames = ctx.getBeanDefinitionNames();
         for(String beanName : allBeanNames) {
             System.out.println("BEAN -- " + beanName);
         }

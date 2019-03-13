@@ -33,6 +33,6 @@ public class GreetingServiceImpl implements GreetingService, InitializingBean, D
      */
     @Override
     public void destroy() throws Exception {
-        logger.info("invoke destroy method");
+        logger.info("******* INVOKE destroy() METHOD");
     }
 }
