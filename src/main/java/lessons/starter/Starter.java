@@ -7,29 +7,31 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.util.Arrays;
-
 public class Starter {
 
+    private static ApplicationContext applicationContext;
     private static final Logger logger = LogManager.getLogger(Starter.class);
 
     public static void main(String[] args) {
         logger.info("Starting configuration...");
 
-//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-//        context.register(LessonsConfiguration.class);
-//        context.refresh();
+//        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+//        applicationContext.register(LessonsConfiguration.class);
+//        applicationContext.refresh();
+        applicationContext = new AnnotationConfigApplicationContext(LessonsConfiguration.class);
 
-        ApplicationContext context = new AnnotationConfigApplicationContext(LessonsConfiguration.class);
+        displayAllBeans();
 
-        String[] beanNames = context.getBeanDefinitionNames();
-        Arrays.sort(beanNames);
-        for (String beanName : beanNames) {
+//        GreetingService greetingService = context.getBean(GreetingService.class);
+        GreetingService greetingService = applicationContext.getBean("gServiceAnotherNamed", GreetingService.class);
+        logger.info(greetingService.sayGreeting());  // "Greeting, user!
+    }
+
+    public static void displayAllBeans() {
+        String[] allBeanNames = applicationContext.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
             System.out.println("BEAN -- " + beanName);
         }
-
-        GreetingService greetingService = context.getBean(GreetingService.class);
-        logger.info(greetingService.sayGreeting());  // "Greeting, user!
     }
 
 }
