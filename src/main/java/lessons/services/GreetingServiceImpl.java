@@ -4,6 +4,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +14,12 @@ import javax.annotation.PreDestroy;
 public class GreetingServiceImpl implements GreetingService, InitializingBean, DisposableBean {
 
     private static final Logger logger = LogManager.getLogger(GreetingServiceImpl.class);
+    private ApplicationContext context;
+
+//    @Required
+    public void setContext(ApplicationContext context) {
+        this.context = context;
+    }
 
     @Override
     public String sayGreeting() {
