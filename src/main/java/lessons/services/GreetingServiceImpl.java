@@ -5,12 +5,14 @@ import org.springframework.beans.factory.InitializingBean;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Component
+@Scope("prototype")
 public class GreetingServiceImpl implements GreetingService, InitializingBean, DisposableBean {
 
     private static final Logger logger = LogManager.getLogger(GreetingServiceImpl.class);
