@@ -1,6 +1,7 @@
 package lessons.starter;
 
 import lessons.LessonsConfiguration;
+import lessons.services.BeanWithDependency;
 import lessons.services.GreetingService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -22,6 +23,9 @@ public class Starter {
 
         GreetingService greetingService = ctx.getBean(GreetingService.class);
         logger.info(greetingService.sayGreeting());
+
+        BeanWithDependency withDependency = ctx.getBean(BeanWithDependency.class);
+        logger.info(withDependency.printText());
     }
 
     public static void displayAllBeans() {

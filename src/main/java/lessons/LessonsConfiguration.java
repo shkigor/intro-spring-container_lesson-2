@@ -1,25 +1,17 @@
 package lessons;
 
-import lessons.services.BeanWithDependency;
 import lessons.services.CommandManager;
 import lessons.services.GreetingService;
 import lessons.services.GreetingServiceImpl;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 
 /**
  * Конфигурационный класс Spring IoC контейнера
  */
 @Configuration
 @ComponentScan
+@Import(AnotherConfiguration.class)
 public class LessonsConfiguration {
-
-    @Bean
-    BeanWithDependency beanWithDependency() {
-        return new BeanWithDependency(greetingService());
-    }
 
     @Bean
     GreetingService greetingService() {

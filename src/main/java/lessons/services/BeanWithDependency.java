@@ -7,6 +7,7 @@ public class BeanWithDependency {
     private static final Logger logger = LogManager.getLogger(BeanWithDependency.class);
 
     public BeanWithDependency() {
+        logger.info("?????????????? - Default Constructor");
     }
 
     public BeanWithDependency(GreetingService greetingService) {
