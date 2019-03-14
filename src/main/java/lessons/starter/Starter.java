@@ -21,8 +21,7 @@ public class Starter {
         displayAllBeans();
 
         GreetingService greetingService = ctx.getBean(GreetingService.class);
-//        GreetingService greetingService = ctx.getBean("gServiceName", GreetingService.class);
-        logger.info(greetingService.sayGreeting());  // "Greeting, user!
+        logger.info(greetingService.sayGreeting());
     }
 
     public static void displayAllBeans() {
